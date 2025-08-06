@@ -88,15 +88,16 @@
     margin-left: 3px;
 }
 
-.title {
-    position: absolute;
-    top: 10rem
-}
-
-.login-group {
+.login-wrapper .login .title {
     width: 70%;
     position: absolute;
-    top: 10rem
+    top: 10rem;
+}
+
+.login-wrapper .login .login-group {
+    width: 70%;
+    position: absolute;
+    top: 10rem;
 }
 
 .more-info {
