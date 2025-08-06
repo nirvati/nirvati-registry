@@ -23,7 +23,7 @@
 #
 # package_online:
 #				prepare online install package
-#			for example: make package_online -e DEVFLAG=false\
+#			for example: make package_online -e \
 #							REGISTRYSERVER=reg-bj.goharbor.io \
 #							REGISTRYPROJECTNAME=harborrelease
 #
@@ -31,13 +31,13 @@
 #				prepare offline install package
 #
 # pushimage:	push Harbor images to specific registry server
-#			for example: make pushimage -e DEVFLAG=false REGISTRYUSER=admin \
+#			for example: make pushimage -e REGISTRYUSER=admin \
 #							REGISTRYPASSWORD=***** \
 #							REGISTRYSERVER=reg-bj.goharbor.io/ \
 #							REGISTRYPROJECTNAME=harborrelease
 #				note**: need add "/" on end of REGISTRYSERVER. If not setting \
 #						this value will push images directly to dockerhub.
-#						 make pushimage -e DEVFLAG=false REGISTRYUSER=goharbor \
+#						 make pushimage -e REGISTRYUSER=goharbor \
 #							REGISTRYPASSWORD=***** \
 #							REGISTRYPROJECTNAME=goharbor
 #
@@ -59,9 +59,6 @@
 #				note**: If commit new code to github, the git commit TAG will \
 #				change. Better use this command clean previous images and \
 #				files with specific TAG.
-#   By default DEVFLAG=true, if you want to release new version of Harbor, \
-#		should setting the flag to false.
-#				make XXXX -e DEVFLAG=false
 
 SHELL := /bin/bash
 BUILDPATH=$(CURDIR)
@@ -76,7 +73,6 @@ CHECKENVCMD=checkenv.sh
 # parameters
 REGISTRYSERVER=
 REGISTRYPROJECTNAME=goharbor
-DEVFLAG=true
 TRIVYFLAG=false
 EXPORTERFLAG=false
 HTTPPROXY=
@@ -400,7 +396,7 @@ build:
 		echo Should pull base images from registry in docker configuration since no base images built. ; \
 		exit 1; \
 	fi
-	make -f $(MAKEFILEPATH_PHOTON)/Makefile $(BUILDTARGET) -e DEVFLAG=$(DEVFLAG) -e GOBUILDIMAGE=$(GOBUILDIMAGE) -e NODEBUILDIMAGE=$(NODEBUILDIMAGE) \
+	make -f $(MAKEFILEPATH_PHOTON)/Makefile $(BUILDTARGET) -e GOBUILDIMAGE=$(GOBUILDIMAGE) -e NODEBUILDIMAGE=$(NODEBUILDIMAGE) \
 	 -e REGISTRYVERSION=$(REGISTRYVERSION) -e REGISTRY_SRC_TAG=$(REGISTRY_SRC_TAG)  -e DISTRIBUTION_SRC=$(DISTRIBUTION_SRC)\
 	 -e TRIVYVERSION=$(TRIVYVERSION) -e TRIVYADAPTERVERSION=$(TRIVYADAPTERVERSION) \
 	 -e VERSIONTAG=$(VERSIONTAG) \
