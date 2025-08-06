@@ -95,10 +95,10 @@ BUILDBASETARGET=trivy-adapter core db jobservice nginx portal redis registry reg
 ifeq ($(BUILD_INSTALLER), true)
 	BUILDBASETARGET += prepare log
 endif
-IMAGENAMESPACE=goharbor
-BASEIMAGENAMESPACE=goharbor
+IMAGENAMESPACE=registry
+BASEIMAGENAMESPACE=registry
 # #input true/false only
-PULL_BASE_FROM_DOCKERHUB=true
+PULL_BASE_FROM_DOCKERHUB=false
 
 # for harbor package name
 PKGVERSIONTAG=dev
@@ -415,16 +415,16 @@ build_standalone_db_migrator: compile_standalone_db_migrator
 
 build_base_docker:
 	if [ -n "$(REGISTRYUSER)" ] && [ -n "$(REGISTRYPASSWORD)" ] ; then \
-		docker login -u $(REGISTRYUSER) -p $(REGISTRYPASSWORD) ; \
+		docker login -u $(REGISTRYUSER) -p $(REGISTRYPASSWORD) $(REGISTRYSERVER); \
 	else \
-		echo "No docker credentials provided, please make sure enough privileges to access docker hub!" ; \
+		echo "No docker credentials provided, please ensure Docker has enough privileges to access docker hub!" ; \
 	fi
 	@for name in $(BUILDBASETARGET); do \
 		echo $$name ; \
 		sleep 30 ; \
 		$(DOCKERBUILD) --pull --no-cache -f $(MAKEFILEPATH_PHOTON)/$$name/Dockerfile.base -t $(BASEIMAGENAMESPACE)/harbor-$$name-base:$(BASEIMAGETAG) --label base-build-date=$(date +"%Y%m%d") . ; \
 		if [ "$(PUSHBASEIMAGE)" != "false" ] ; then \
-			$(PUSHSCRIPTPATH)/$(PUSHSCRIPTNAME) $(BASEIMAGENAMESPACE)/harbor-$$name-base:$(BASEIMAGETAG) $(REGISTRYUSER) $(REGISTRYPASSWORD) || exit 1; \
+			$(PUSHSCRIPTPATH)/$(PUSHSCRIPTNAME) $(BASEIMAGENAMESPACE)/harbor-$$name-base:$(BASEIMAGETAG) $(REGISTRYUSER) $(REGISTRYPASSWORD) $(REGISTRYSERVER) || exit 1; \
 		fi ; \
 	done
 
