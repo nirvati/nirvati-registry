@@ -7,7 +7,7 @@
         [ngStyle]="{
             'background-image': customLoginBgImg
                 ? 'url(/images/' + customLoginBgImg + ')'
-                : ''
+                : '',
         }">
         <form #signInForm="ngForm" class="login">
             <span
@@ -38,7 +38,7 @@
                                             | translate
                                                 : {
                                                       providerName:
-                                                          getOIDCProviderName()
+                                                          getOIDCProviderName(),
                                                   }
                                     }}
                                 </ng-container>
@@ -174,7 +174,7 @@
                     [ngClass]="{
                         'pt-1':
                             (!isOidcLoginMode && steps === 1) ||
-                            (isOidcLoginMode && steps === 2)
+                            (isOidcLoginMode && steps === 2),
                     }">
                     <a
                         rel="noopener noreferrer"

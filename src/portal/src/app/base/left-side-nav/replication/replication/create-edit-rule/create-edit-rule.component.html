@@ -210,7 +210,7 @@
                                                 'tag',
                                             'width-tag-label':
                                                 supportedFilters[i]?.type ===
-                                                'tag'
+                                                'tag',
                                         }"
                                         (input)="trimText($event)"
                                         type="text"
@@ -282,7 +282,7 @@
                                         id="labelFilter"
                                         [(ngModel)]="stringForLabelFilter"
                                         [ngModelOptions]="{
-                                            standalone: true
+                                            standalone: true,
                                         }" />
                                     <clr-dropdown>
                                         <clr-icon

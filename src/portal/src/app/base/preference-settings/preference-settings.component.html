@@ -90,7 +90,7 @@
                                                     [ngClass]="{
                                                         'is-invalid':
                                                             customPrefix.invalid &&
-                                                            customPrefix.touched
+                                                            customPrefix.touched,
                                                     }"
                                                     pattern="^[a-z]+$"
                                                     minlength="2"
@@ -105,16 +105,28 @@
                                                     customPrefix.touched
                                                 ">
                                                 <div
-                                                    *ngIf="customPrefix.errors?.['required']">
+                                                    *ngIf="
+                                                        customPrefix.errors?.[
+                                                            'required'
+                                                        ]
+                                                    ">
                                                     Prefix is required
                                                 </div>
                                                 <div
-                                                    *ngIf="customPrefix.errors?.['minlength']">
+                                                    *ngIf="
+                                                        customPrefix.errors?.[
+                                                            'minlength'
+                                                        ]
+                                                    ">
                                                     Prefix must be at least 2
                                                     characters
                                                 </div>
                                                 <div
-                                                    *ngIf="customPrefix.errors?.['pattern']">
+                                                    *ngIf="
+                                                        customPrefix.errors?.[
+                                                            'pattern'
+                                                        ]
+                                                    ">
                                                     Prefix must only contain
                                                     lowercase alphabets (a-z)
                                                 </div>

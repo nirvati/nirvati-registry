@@ -8,10 +8,7 @@ a {
 
 .app-loading {
   position: absolute !important;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   margin: auto !important;
   width: 108px !important;
   height: 108px !important;
@@ -30,17 +27,14 @@ a {
 }
 
 .alert-global-align {
-  -webkit-box-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
   align-items: center;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden auto;
 }
 
 .tooltip-content {
   white-space: normal;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .alert.alert-warning {

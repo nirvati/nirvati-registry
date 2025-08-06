@@ -195,7 +195,7 @@ export class ConfigurationScannerComponent implements OnInit, OnDestroy {
 
     supportCapability(scanner: Scanner, capabilityType: string): boolean {
         return scanner && scanner.capabilities && capabilityType
-            ? scanner?.capabilities?.[`support_${capabilityType}`] ?? false
+            ? (scanner?.capabilities?.[`support_${capabilityType}`] ?? false)
             : false;
     }
 

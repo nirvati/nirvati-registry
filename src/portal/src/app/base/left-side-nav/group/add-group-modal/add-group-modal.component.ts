@@ -69,8 +69,8 @@ export class AddGroupModalComponent implements OnInit {
             group_type: this.isLdapMode
                 ? GroupType.LDAP_TYPE
                 : this.isHttpAuthMode
-                ? GroupType.HTTP_TYPE
-                : GroupType.OIDC_TYPE,
+                  ? GroupType.HTTP_TYPE
+                  : GroupType.OIDC_TYPE,
         };
     }
 
@@ -140,8 +140,8 @@ export class AddGroupModalComponent implements OnInit {
             group_type: this.isLdapMode
                 ? GroupType.LDAP_TYPE
                 : this.isHttpAuthMode
-                ? GroupType.HTTP_TYPE
-                : GroupType.OIDC_TYPE,
+                  ? GroupType.HTTP_TYPE
+                  : GroupType.OIDC_TYPE,
         };
         this.groupForm.reset();
     }

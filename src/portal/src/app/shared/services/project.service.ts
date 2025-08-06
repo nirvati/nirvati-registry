@@ -207,10 +207,9 @@ export class ProjectDefaultService extends ProjectService {
             params = params.set('sort', sort);
         }
         return this.http
-            .get<HttpResponse<Project[]>>(
-                `${CURRENT_BASE_HREF}/projects`,
-                buildHttpRequestOptionsWithObserveResponse(params)
-            )
+            .get<
+                HttpResponse<Project[]>
+            >(`${CURRENT_BASE_HREF}/projects`, buildHttpRequestOptionsWithObserveResponse(params))
             .pipe(catchError(error => observableThrowError(error)));
     }
 

@@ -66,7 +66,10 @@ export class LabelSelectorComponent implements OnInit, OnChanges, OnDestroy {
     }>();
     private _searchSubject = new Subject<string>();
     private _subSearch: Subscription;
-    constructor(private labelService: LabelService, private router: Router) {
+    constructor(
+        private labelService: LabelService,
+        private router: Router
+    ) {
         if (!this._subSearch) {
             this._subSearch = this._searchSubject
                 .pipe(

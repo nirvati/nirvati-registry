@@ -416,7 +416,7 @@
                         [ngClass]="{
                             'clr-form-control-disable':
                                 !currentConfig.banner_message.editable ||
-                                !messageText
+                                !messageText,
                         }">
                         <label class="message-label">{{
                             'BANNER_MESSAGE.MESSAGE_TYPE' | translate
@@ -443,7 +443,7 @@
                     [ngClass]="{
                         'clr-form-control-disable':
                             !currentConfig.banner_message.editable ||
-                            !messageText
+                            !messageText,
                     }">
                     <input
                         class="clr-checkbox-inline"
@@ -475,7 +475,7 @@
                     [ngClass]="{
                         'clr-form-control-disable':
                             !currentConfig.banner_message.editable ||
-                            !messageText
+                            !messageText,
                     }">
                     <label>{{ 'BANNER_MESSAGE.FROM' | translate }}</label>
                     <clr-date-container>
@@ -484,8 +484,8 @@
                             type="date"
                             id="from"
                             autocomplete="off"
-                            min="{{ currentDate | date : 'yyyy-MM-dd' }}"
-                            max="{{ messageToDate | date : 'yyyy-MM-dd' }}"
+                            min="{{ currentDate | date: 'yyyy-MM-dd' }}"
+                            max="{{ messageToDate | date: 'yyyy-MM-dd' }}"
                             clrDate
                             readonly
                             [(ngModel)]="messageFromDate"
@@ -501,7 +501,7 @@
                     [ngClass]="{
                         'clr-form-control-disable':
                             !currentConfig.banner_message.editable ||
-                            !messageText
+                            !messageText,
                     }">
                     <label>{{ 'BANNER_MESSAGE.TO' | translate }}</label>
                     <clr-date-container>
@@ -511,7 +511,7 @@
                             readonly
                             type="date"
                             id="to"
-                            min="{{ minDateForEndDay() | date : 'yyyy-MM-dd' }}"
+                            min="{{ minDateForEndDay() | date: 'yyyy-MM-dd' }}"
                             autocomplete="off"
                             [(ngModel)]="messageToDate"
                             [disabled]="

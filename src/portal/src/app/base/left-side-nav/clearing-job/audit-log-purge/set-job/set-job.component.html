@@ -113,7 +113,7 @@
                                 (retentionTimeNgModel.dirty ||
                                     retentionTimeNgModel.touched) &&
                                 (retentionTimeNgModel.invalid ||
-                                    !isRetentionTimeValid())
+                                    !isRetentionTimeValid()),
                         }">
                         <select
                             [(ngModel)]="retentionUnit"
@@ -138,7 +138,7 @@
                     (retentionTimeNgModel.dirty ||
                         retentionTimeNgModel.touched) &&
                     retentionTimeNgModel.invalid
-                )
+                ),
             }">
             <span class="font-style required flex-200"
                 >{{ 'CLEARANCES.INCLUDED_EVENT_TYPES' | translate

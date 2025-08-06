@@ -288,10 +288,9 @@ export class ReplicationDefaultService extends ReplicationService {
             queryParams = queryParams.set('page_size', pageSize + '');
         }
         return this.http
-            .get<HttpResponse<ReplicationPolicy[]>>(
-                this._ruleBaseUrl,
-                buildHttpRequestOptionsWithObserveResponse(queryParams)
-            )
+            .get<
+                HttpResponse<ReplicationPolicy[]>
+            >(this._ruleBaseUrl, buildHttpRequestOptionsWithObserveResponse(queryParams))
             .pipe(
                 map(response => response as HttpResponse<ReplicationPolicy[]>),
                 catchError(error => observableThrowError(error))
@@ -431,10 +430,9 @@ export class ReplicationDefaultService extends ReplicationService {
         let url: string = `${this._replicateUrl}/executions`;
         queryParams = queryParams.set('policy_id', '' + ruleId);
         return this.http
-            .get<HttpResponse<ReplicationExecution[]>>(
-                url,
-                buildHttpRequestOptionsWithObserveResponse(queryParams)
-            )
+            .get<
+                HttpResponse<ReplicationExecution[]>
+            >(url, buildHttpRequestOptionsWithObserveResponse(queryParams))
             .pipe(
                 map(response => {
                     let result: any = {
@@ -472,10 +470,9 @@ export class ReplicationDefaultService extends ReplicationService {
         }
         let requestUrl: string = `${this._replicateUrl}/executions/${executionId}`;
         return this.http
-            .get<HttpResponse<ReplicationExecution[]>>(
-                requestUrl,
-                HTTP_GET_OPTIONS_OBSERVE_RESPONSE
-            )
+            .get<
+                HttpResponse<ReplicationExecution[]>
+            >(requestUrl, HTTP_GET_OPTIONS_OBSERVE_RESPONSE)
             .pipe(
                 map(response => {
                     let result: any = {

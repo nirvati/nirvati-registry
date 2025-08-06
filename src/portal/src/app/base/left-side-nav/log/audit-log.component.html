@@ -65,7 +65,7 @@
             }}</clr-dg-placeholder>
             <clr-dg-row *ngFor="let l of recentLogs">
                 <clr-dg-cell>{{
-                    l.op_time | harborDatetime : 'short'
+                    l.op_time | harborDatetime: 'short'
                 }}</clr-dg-cell>
                 <clr-dg-cell>{{ l.username }}</clr-dg-cell>
                 <clr-dg-cell>{{ l.resource }}</clr-dg-cell>

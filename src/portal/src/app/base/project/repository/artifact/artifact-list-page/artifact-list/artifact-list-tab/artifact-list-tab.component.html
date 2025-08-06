@@ -270,7 +270,7 @@
                             class="digest margin-left-5"
                             (click)="goIntoArtifactSummaryPage(artifact)"
                             title="{{ artifact.digest }}">
-                            {{ artifact.digest | slice : 0 : 15 }}</a
+                            {{ artifact.digest | slice: 0 : 15 }}</a
                         >
                         <clr-tooltip
                             class="fix-width"
@@ -560,7 +560,7 @@
                 </clr-dg-cell>
                 <clr-dg-cell>
                     <div class="cell">
-                        {{ artifact.push_time | harborDatetime : 'short' }}
+                        {{ artifact.push_time | harborDatetime: 'short' }}
                     </div>
                 </clr-dg-cell>
                 <clr-dg-cell>
@@ -568,8 +568,7 @@
                         {{
                             artifact.pull_time === availableTime
                                 ? ''
-                                : (artifact.pull_time
-                                  | harborDatetime : 'short')
+                                : (artifact.pull_time | harborDatetime: 'short')
                         }}
                     </div>
                 </clr-dg-cell>

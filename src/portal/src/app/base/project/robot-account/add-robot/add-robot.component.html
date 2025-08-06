@@ -204,7 +204,7 @@
                             ">
                             <span
                                 [ngClass]="{
-                                    showWarning: shouldShowWarning()
+                                    showWarning: shouldShowWarning(),
                                 }">
                                 <clr-icon
                                     *ngIf="shouldShowWarning()"
@@ -216,7 +216,7 @@
                                 >:
                                 <span>{{
                                     calculateExpiresAt()
-                                        | harborDatetime : 'short'
+                                        | harborDatetime: 'short'
                                 }}</span>
                             </span>
                         </clr-control-helper>

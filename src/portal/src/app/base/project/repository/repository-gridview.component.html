@@ -38,7 +38,8 @@
                         (mouseleave)="mouseLeave('card')">
                         <clr-icon
                             [ngClass]="{
-                                'is-highlight': isCardView || isHovering('card')
+                                'is-highlight':
+                                    isCardView || isHovering('card'),
                             }"
                             shape="view-cards"></clr-icon>
                     </span>
@@ -50,7 +51,7 @@
                         <clr-icon
                             [ngClass]="{
                                 'is-highlight':
-                                    !isCardView || isHovering('list')
+                                    !isCardView || isHovering('list'),
                             }"
                             shape="view-list"></clr-icon>
                     </span>
@@ -111,7 +112,7 @@
                     <clr-dg-cell>{{ r.artifact_count }}</clr-dg-cell>
                     <clr-dg-cell>{{ r.pull_count }}</clr-dg-cell>
                     <clr-dg-cell>{{
-                        r.update_time | harborDatetime : 'short'
+                        r.update_time | harborDatetime: 'short'
                     }}</clr-dg-cell>
                 </clr-dg-row>
                 <clr-dg-footer>
@@ -156,7 +157,7 @@
                     <div
                         [ngClass]="{
                             'card-media-block': true,
-                            wrap: !withAdmiral
+                            wrap: !withAdmiral,
                         }">
                         <img *ngIf="withAdmiral" [src]="getImgLink(item)" />
                         <div class="card-media-description">
@@ -191,7 +192,7 @@
                             'REPOSITORY.LAST_MODIFIED' | translate
                         }}</label>
                         <div>
-                            {{ item.update_time | harborDatetime : 'short' }}
+                            {{ item.update_time | harborDatetime: 'short' }}
                         </div>
                     </div>
                 </div>

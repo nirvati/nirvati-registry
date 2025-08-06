@@ -51,10 +51,9 @@ export class UserService {
             params = params.set('username', username);
         }
         return this.http
-            .get<HttpResponse<User[]>>(
-                userMgmtEndpoint,
-                buildHttpRequestOptionsWithObserveResponse(params)
-            )
+            .get<
+                HttpResponse<User[]>
+            >(userMgmtEndpoint, buildHttpRequestOptionsWithObserveResponse(params))
             .pipe(catchError(error => observableThrowError(error)));
     }
     // Handle the related exceptions
