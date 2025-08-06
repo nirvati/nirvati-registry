@@ -4,10 +4,10 @@
     "lightMode": ""
   },
   "loginBgImg": "",
-  "loginTitle": "",
+  "loginTitle": "Nirvati",
   "product": {
-    "name": "",
-    "logo": "",
-    "introduction": ""
+    "name": "Nirvati registry",
+    "logo": "nirvati-logo.svg",
+    "introduction": "The open-source container registry optimized for Nirvati."
   }
 }
