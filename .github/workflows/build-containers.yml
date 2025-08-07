@@ -105,7 +105,6 @@ jobs:
       - name: Build binary
         if: ${{ matrix.build_binary != '' }}
         run: |
-          cd src/github.com/goharbor/harbor
           docker run --rm -v .:/harbor -w /harbor/src/${{ matrix.src_name || matrix.container}} golang:1.24.6 /usr/local/go/bin/go build -buildvcs=false -o /harbor/make/photon/${{ matrix.container }}/${{matrix.build_binary}} ${ADDITIONAL_GO_FLAGS:-}
       - name: Run custom build script
         if: ${{ matrix.has_custom_build_script == true }}
