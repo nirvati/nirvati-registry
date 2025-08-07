@@ -20,7 +20,7 @@ jobs:
         with:
           go-version: 1.23.2
         id: go
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: docker/login-action@v3
         with:
           registry: harbor.nirvati.org
@@ -31,7 +31,7 @@ jobs:
         with:
           format: space-delimited
           token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           path: src/github.com/goharbor/harbor
       - name: Build Base Image
