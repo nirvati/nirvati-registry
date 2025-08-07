@@ -1,8 +1,4 @@
-ARG build_image
-ARG harbor_base_image_version
-ARG harbor_base_namespace
-
-FROM ${build_image} AS build
+FROM golang:1.23.12 AS build
 
 ENV CGO_ENABLED=0
 ENV GOOS=linux
@@ -12,7 +8,7 @@ COPY src /harbor/src
 WORKDIR /harbor/src/cmd/exporter
 RUN go build -o /out/harbor_exporter
 
-FROM ${harbor_base_namespace}/harbor-exporter-base:${harbor_base_image_version}
+FROM harbor.nirvati.org/registry/exporter-base:latest
 
 COPY --from=build /out/harbor_exporter /harbor/harbor_exporter
 COPY ./make/photon/exporter/entrypoint.sh ./make/photon/common/install_cert.sh /harbor/

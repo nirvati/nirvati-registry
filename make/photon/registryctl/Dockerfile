@@ -1,6 +1,4 @@
-ARG harbor_base_image_version
-ARG harbor_base_namespace
-FROM ${harbor_base_namespace}/harbor-registryctl-base:${harbor_base_image_version}
+FROM harbor.nirvati.org/registry/registryctl-base:latest
 
 COPY ./make/photon/common/install_cert.sh /home/harbor
 COPY ./make/photon/registry/binary/registry /usr/bin/registry_DO_NOT_USE_GC

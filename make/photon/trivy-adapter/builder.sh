@@ -7,9 +7,8 @@ if [ -z $1 ]; then
   exit 1
 fi
 
-VERSION="$1"
-GOBUILDIMAGE="$2"
-DOCKERNETWORK="$3"
+VERSION="0.33.2"
+GOBUILDIMAGE="golang:1.23.12"
 
 set -e
 
@@ -23,7 +22,7 @@ cd $TEMP; git checkout $VERSION; cd -
 
 echo "Building Trivy adapter binary ..."
 cp Dockerfile.binary $TEMP
-docker build --network=$DOCKERNETWORK --build-arg golang_image=$GOBUILDIMAGE -f $TEMP/Dockerfile.binary -t trivy-adapter-golang $TEMP
+docker buildx build --build-arg golang_image=$GOBUILDIMAGE -f $TEMP/Dockerfile.binary -t trivy-adapter-golang $TEMP
 
 echo "Copying Trivy adapter binary from the container to the local directory..."
 ID=$(docker create trivy-adapter-golang)

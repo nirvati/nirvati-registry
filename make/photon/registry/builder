@@ -2,20 +2,10 @@
 
 set +e
 
-if [ -z $1 ]; then
-  error "Please set the 'version' variable"
-  exit 1
-fi
-
-if [ -z $2 ]; then
-  error "Please set the 'distribution_src' variable"
-  exit 1
-fi
-
-VERSION="$1"
-DISTRIBUTION_SRC="$2"
-GOBUILDIMAGE="$3"
-DOCKERNETWORK="$4"
+# TODO(Nirvati): Make this configurable/part of the CI config
+VERSION="bunny"
+DISTRIBUTION_SRC="github.com/nirvati/distribution"
+GOBUILDIMAGE="golang:1.23.12"
 
 set -e
 
@@ -34,7 +24,7 @@ cd $cur
 
 echo 'build the registry binary ...'
 cp Dockerfile.binary $TEMP
-docker build --network=$DOCKERNETWORK --build-arg golang_image=$GOBUILDIMAGE -f $TEMP/Dockerfile.binary -t registry-golang $TEMP
+docker buildx build --build-arg golang_image=$GOBUILDIMAGE -f $TEMP/Dockerfile.binary -t registry-golang $TEMP
 
 echo 'copy the registry binary to local...'
 ID=$(docker create registry-golang)

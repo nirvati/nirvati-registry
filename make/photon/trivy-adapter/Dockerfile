@@ -1,8 +1,4 @@
-ARG harbor_base_image_version
-ARG harbor_base_namespace
-FROM ${harbor_base_namespace}/harbor-trivy-adapter-base:${harbor_base_image_version}
-
-ARG trivy_version
+FROM harbor.nirvati.org/registry/trivy-adapter-base:latest
 
 COPY ./make/photon/common/install_cert.sh /home/scanner
 COPY ./make/photon/trivy-adapter/entrypoint.sh /home/scanner
@@ -18,7 +14,7 @@ RUN chown -R scanner:scanner /etc/pki/tls/certs \
 
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 CMD curl --fail -s http://localhost:8080/probe/healthy || curl -k --fail -s https://localhost:8443/probe/healthy || exit 1
 
-ENV TRIVY_VERSION=${trivy_version}
+ENV TRIVY_VERSION=0.64.1
 
 USER scanner
 

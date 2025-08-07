@@ -1,7 +1,4 @@
-ARG harbor_base_image_version
-ARG harbor_base_namespace
-ARG NODE
-FROM ${NODE} as nodeportal
+FROM node:24.5.0 as nodeportal
 
 WORKDIR /build_dir
 
@@ -22,7 +19,7 @@ COPY ./LICENSE /build_dir/dist
 RUN cd app-swagger-ui && npm install --unsafe-perm
 RUN cd app-swagger-ui && npm run build
 
-FROM ${harbor_base_namespace}/harbor-portal-base:${harbor_base_image_version}
+FROM harbor.nirvati.org/registry/portal-base:latest
 
 COPY --from=nodeportal /build_dir/dist /usr/share/nginx/html
 COPY --from=nodeportal /build_dir/swagger.json /usr/share/nginx/html

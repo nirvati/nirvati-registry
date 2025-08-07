@@ -1,6 +1,4 @@
-ARG harbor_base_image_version
-ARG harbor_base_namespace
-FROM ${harbor_base_namespace}/harbor-db-base:${harbor_base_image_version}
+FROM harbor.nirvati.org/registry/db-base:latest
 
 VOLUME /var/lib/postgresql/data
 
