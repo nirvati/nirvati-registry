@@ -85,6 +85,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Check out copy to subdirectory for go
+        uses: actions/checkout@v4
+        if: ${{ matrix.container == 'core' }}
+        with:
+          path: src/github.com/goharbor/harbor
+
       - name: Set up additional flags
         if: ${{ matrix.container == 'core' }}
         # TODO: Proper versioning
