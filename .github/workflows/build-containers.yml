@@ -51,7 +51,27 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        container: [core, db, exporter, jobservice, log, nginx, portal, prepare, redis, registryctl, registry, standalone-db-migrator, trivy-adapter]
+        include:
+          - container: core
+            build_binary: harbor_core
+          - container: db
+          - container: exporter
+          - container: jobservice
+            build_binary: harbor_jobservice
+          - container: log
+          - container: nginx
+          - container: portal
+          - container: prepare
+          - container: redis
+          - container: registryctl
+            build_binary: harbor_registryctl
+          - container: registry
+            has_custom_build_script: true
+          - container: standalone-db-migrator
+            build_binary: migrate
+          - container: trivy-adapter
+            has_custom_build_script: true
+          
     steps:
       - uses: actions/checkout@v4
 
@@ -73,8 +93,16 @@ jobs:
         with:
           path: src/github.com/goharbor/harbor
 
-      - name: Build binaries
-        if: ${{ matrix.container == 'registry' || matrix.container == 'trivy-adapter' }}
+      - name: Set up additional flags
+        if: ${{ matrix.container == 'core' }}
+        run: echo "ADDITIONAL_GO_FLAGS=-X github.com/goharbor/harbor/src/lib/config.GitCommit=$(git rev-parse HEAD) -X github.com/goharbor/harbor/src/lib/config.ReleaseVersion=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+      - name: Build binary
+        if: ${{ matrix.build_binary != '' }}
+        run: |
+          cd src/github.com/goharbor/harbor
+          docker run --rm -v .:/harbor -w /harbor/src/${{ matrix.container }} golang:1.23.12 /usr/local/go/bin/go build -buildvcs=false -o ${matrix.build_binary} ${ADDITIONAL_GO_FLAGS:-}
+      - name: Run custom build script
+        if: ${{ matrix.has_custom_build_script == true }}
         run: |
           ./make/photon/${matrix.container}/builder
 
