@@ -56,27 +56,6 @@ type_exists() {
   return 1
 }
 
-# Check variables
-if [ -z $1 ]; then
-  error "Please set the 'image' variable"
-  exit 1
-fi
-
-if [ -z $2 ]; then
-  error "Please set the 'username' variable"
-  exit 1
-fi
-
-if [ -z $3 ]; then
-  error "Please set the 'password' variable"
-  exit 1
-fi
-
-if [ -z $4 ]; then
-  info "Using default registry server (dockerhub)."
-fi
-
-
 # Check Docker is installed
 if ! type_exists 'docker'; then
   error "Docker is not installed."
@@ -86,9 +65,6 @@ fi
 
 # Variables
 IMAGE="$1"
-USERNAME="$2"
-PASSWORD="$3"
-REGISTRY="$4"
 PULL_BASE_FROM_DOCKERHUB="$5"
 
 set -e

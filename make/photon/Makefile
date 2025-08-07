@@ -20,6 +20,7 @@ TIMESTAMP=$(shell date +"%Y%m%d")
 DOCKERCMD=$(shell which docker)
 DOCKERBUILD=$(DOCKERCMD) build --no-cache --network=$(DOCKERNETWORK)
 DOCKERBUILD_WITH_PULL_PARA=$(DOCKERBUILD) --pull=false
+
 DOCKERRMIMAGE=$(DOCKERCMD) rmi
 DOCKERIMAGES=$(DOCKERCMD) images
 IMAGENAMESPACE=harbor.nirvati.org/registry
