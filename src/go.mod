@@ -238,4 +238,5 @@ replace (
 	github.com/gocraft/work => github.com/goharbor/work v0.5.1-patch
 	github.com/goharbor/harbor => ../
 	github.com/gomodule/redigo => github.com/gomodule/redigo v1.9.2
+	github.com/distribution/distribution => github.com/yourname/somepkg v3.0.0-bunny.1
 )
