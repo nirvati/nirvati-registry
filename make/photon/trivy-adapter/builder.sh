@@ -2,7 +2,7 @@
 
 set +e
 
-VERSION="0.33.2"
+VERSION="v0.33.2"
 GOBUILDIMAGE="golang:1.24.6"
 
 set -e
