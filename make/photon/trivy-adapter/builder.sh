@@ -8,7 +8,7 @@ if [ -z $1 ]; then
 fi
 
 VERSION="0.33.2"
-GOBUILDIMAGE="golang:1.23.12"
+GOBUILDIMAGE="golang:1.24.6"
 
 set -e
 

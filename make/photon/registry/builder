@@ -5,7 +5,7 @@ set +e
 # TODO(Nirvati): Make this configurable/part of the CI config
 VERSION="bunny"
 DISTRIBUTION_SRC="github.com/nirvati/distribution"
-GOBUILDIMAGE="golang:1.23.12"
+GOBUILDIMAGE="golang:1.24.6"
 
 set -e
 
