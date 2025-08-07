@@ -99,7 +99,7 @@ jobs:
       - name: Run custom build script
         if: ${{ matrix.run_build_script }}
         run: |
-          ./make/photon/${{ matrix.run_build_script == true && matrix.container || matrix.run_build_script }}/build.sh
+          ./make/photon/${{ matrix.run_build_script == true && matrix.container || matrix.run_build_script }}/builder.sh
 
       - name: Build and push
         uses: docker/build-push-action@v6
