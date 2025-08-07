@@ -60,13 +60,14 @@ jobs:
           - container: redis
           - container: registryctl
             build_binary: harbor_registryctl
+            run_build_script: registry
           - container: registry
-            has_custom_build_script: true
+            run_build_script: true
           - container: standalone-db-migrator
             build_binary: migrate
             src_name: migration
           - container: trivy-adapter
-            has_custom_build_script: true
+            run_build_script: true
           
     steps:
       - uses: actions/checkout@v4
@@ -89,17 +90,16 @@ jobs:
 
       - name: Set up additional flags
         if: ${{ matrix.container == 'core' }}
-        run: |
-          echo "ADDITIONAL_GO_FLAGS=-ldflags=\"-X github.com/goharbor/harbor/src/lib/config.GitCommit=$(git rev-parse HEAD) -X github.com/goharbor/harbor/src/lib/config.ReleaseVersion=$(git describe --tags --abbrev=0)\"" >> $GITHUB_ENV
-          echo "ADDITIONAL_GO_FLAGS=-ldflags=\"-X github.com/goharbor/harbor/src/lib/config.GitCommit=$(git rev-parse HEAD) -X github.com/goharbor/harbor/src/lib/config.ReleaseVersion=$(git describe --tags --abbrev=0)\""
+        # TODO: Proper versioning
+        run:  echo "ADDITIONAL_GO_FLAGS=-ldflags=\"-X github.com/goharbor/harbor/src/lib/config.GitCommit=$(git rev-parse HEAD) -X github.com/goharbor/harbor/src/lib/config.ReleaseVersion=dev\"" >> $GITHUB_ENV
       - name: Build binary
         if: ${{ matrix.build_binary != '' }}
         run: |
           docker run --rm -v .:/harbor -w /harbor/src/${{ matrix.src_name || matrix.container}} golang:1.24.6 /usr/local/go/bin/go build -buildvcs=false -o /harbor/make/photon/${{ matrix.container }}/${{matrix.build_binary}} ${ADDITIONAL_GO_FLAGS:-}
       - name: Run custom build script
-        if: ${{ matrix.has_custom_build_script == true }}
+        if: ${{ matrix.run_build_script }}
         run: |
-          ./make/photon/${{matrix.container}}/builder.sh
+          ./make/photon/${{ matrix.run_build_script == true && matrix.container || matrix.run_build_script }}/build.sh
 
       - name: Build and push
         uses: docker/build-push-action@v6
