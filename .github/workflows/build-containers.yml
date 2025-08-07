@@ -100,7 +100,7 @@ jobs:
         if: ${{ matrix.build_binary != '' }}
         run: |
           cd src/github.com/goharbor/harbor
-          docker run --rm -v .:/harbor -w /harbor/src/${{ matrix.container }} golang:1.23.12 /usr/local/go/bin/go build -buildvcs=false -o ${matrix.build_binary} ${ADDITIONAL_GO_FLAGS:-}
+          docker run --rm -v .:/harbor -w /harbor/src/${{ matrix.container }} golang:1.23.12 /usr/local/go/bin/go build -buildvcs=false -o make/photon/${{ matrix.container }}/${{matrix.build_binary}} ${ADDITIONAL_GO_FLAGS:-}
       - name: Run custom build script
         if: ${{ matrix.has_custom_build_script == true }}
         run: |
