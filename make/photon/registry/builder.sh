@@ -24,7 +24,7 @@ cd $cur
 
 echo 'build the registry binary ...'
 cp Dockerfile.binary $TEMP
-docker buildx build --build-arg golang_image=$GOBUILDIMAGE -f $TEMP/Dockerfile.binary -t registry-golang $TEMP
+docker buildx build --build-arg golang_image=$GOBUILDIMAGE -f $TEMP/Dockerfile.binary -t registry-golang --load $TEMP
 
 echo 'copy the registry binary to local...'
 ID=$(docker create registry-golang)
