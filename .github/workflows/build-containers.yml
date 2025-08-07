@@ -88,12 +88,18 @@ jobs:
       - name: Set up additional flags
         if: ${{ matrix.container == 'core' }}
         # TODO: Proper versioning
-        run: echo "ADDITIONAL_GO_FLAGS=-ldflags=\"-X github.com/goharbor/harbor/src/lib/config.GitCommit=$(git rev-parse HEAD) -X github.com/goharbor/harbor/src/lib/config.ReleaseVersion=dev\"" >> $GITHUB_ENV
+        run: echo "ADDITIONAL_GO_LDFLAGS=-X github.com/goharbor/harbor/src/lib/config.GitCommit=$(git rev-parse HEAD) -X github.com/goharbor/harbor/src/lib/config.ReleaseVersion=dev" >> $GITHUB_ENV
 
       - name: Build binary
         if: ${{ matrix.build_binary != '' }}
         run: |
-          docker run --rm -v .:/harbor -w /harbor/src/${{ matrix.src_name || matrix.container}} golang:1.24.6 /usr/local/go/bin/go build -buildvcs=false -o /harbor/make/photon/${{ matrix.container }}/${{matrix.build_binary}} ${ADDITIONAL_GO_FLAGS:-}
+          # If ADDITIONAL_GO_LDFLAGS is set, use it; otherwise, use the default
+          if [ -n "${ADDITIONAL_GO_LDFLAGS}" ]; then
+            docker run --rm -v .:/harbor -w /harbor/src/${{ matrix.src_name || matrix.container}} golang:1.24.6 /usr/local/go/bin/go build -buildvcs=false -o /harbor/make/photon/${{ matrix.container }}/${{matrix.build_binary}} -ldflags "${ADDITIONAL_GO_LDFLAGS}"
+          else
+            docker run --rm -v .:/harbor -w /harbor/src/${{ matrix.src_name || matrix.container}} golang:1.24.6 /usr/local/go/bin/go build -buildvcs=false -o /harbor/make/photon/${{ matrix.container }}/${{matrix.build_binary}}
+          fi
+
       - name: Run custom build script
         if: ${{ matrix.run_build_script }}
         run: |
