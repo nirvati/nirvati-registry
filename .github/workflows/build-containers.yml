@@ -75,6 +75,8 @@ jobs:
           
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-tags: true
 
       - name: Set up Go 1.23
         uses: actions/setup-go@v5
