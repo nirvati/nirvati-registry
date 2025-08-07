@@ -439,10 +439,6 @@ install: compile build prepare start
 package_online: update_prepare_version
 	@echo "packing online package ..."
 	@cp -r make $(HARBORPKG)
-	@if [ -n "$(REGISTRYSERVER)" ] ; then \
-		$(SEDCMDI) -e 's/image\: $(IMAGENAMESPACE)/image\: $(REGISTRYSERVER)\/$(REGISTRYPROJECTNAME)/' \
-		$(HARBORPKG)/docker-compose.yml ; \
-	fi
 	@cp LICENSE $(HARBORPKG)/LICENSE
 
 	@$(TARCMD) $(PACKAGE_ONLINE_PARA)
