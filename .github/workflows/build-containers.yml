@@ -11,6 +11,7 @@ jobs:
     runs-on:
       - ubuntu-24.04
     strategy:
+      fail-fast: false
       matrix:
         container: [core, db, exporter, jobservice, log, nginx, portal, prepare, redis, registryctl, registry, trivy-adapter]
     steps:
@@ -48,6 +49,7 @@ jobs:
       - ubuntu-24.04
     needs: build-base
     strategy:
+      fail-fast: false
       matrix:
         container: [core, db, exporter, jobservice, log, nginx, portal, prepare, redis, registryctl, registry, standalone-db-migrator, trivy-adapter]
     steps:
