@@ -91,7 +91,7 @@ jobs:
       - name: Set up additional flags
         if: ${{ matrix.container == 'core' }}
         # TODO: Proper versioning
-        run:  echo "ADDITIONAL_GO_FLAGS=-ldflags=\"-X github.com/goharbor/harbor/src/lib/config.GitCommit=$(git rev-parse HEAD) -X github.com/goharbor/harbor/src/lib/config.ReleaseVersion=dev\"" >> $GITHUB_ENV
+        run:  echo 'ADDITIONAL_GO_FLAGS=-ldflags="-X github.com/goharbor/harbor/src/lib/config.GitCommit=$(git rev-parse HEAD) -X github.com/goharbor/harbor/src/lib/config.ReleaseVersion=dev"' >> $GITHUB_ENV
       - name: Build binary
         if: ${{ matrix.build_binary != '' }}
         run: |
