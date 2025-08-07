@@ -28,6 +28,7 @@ docker buildx build --build-arg golang_image=$GOBUILDIMAGE -f $TEMP/Dockerfile.b
 
 echo 'copy the registry binary to local...'
 ID=$(docker create registry-golang)
+mkdir -p binary
 docker cp $ID:/go/src/github.com/distribution/distribution/v3/bin/registry binary/registry
 
 docker rm -f $ID
