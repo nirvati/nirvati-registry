@@ -91,6 +91,10 @@ jobs:
         with:
           path: src/github.com/goharbor/harbor
 
+      - name: Prepare API files
+        if: ${{ matrix.container == 'core' }}
+        run: make gen_apis
+
       - name: Set up additional flags
         if: ${{ matrix.container == 'core' }}
         # TODO: Proper versioning

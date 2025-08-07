@@ -106,6 +106,7 @@ require (
 	github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible // indirect
 	github.com/Masterminds/semver/v3 v3.3.0 // indirect
 	github.com/Unknwon/goconfig v0.0.0-20160216183935-5f601ca6ef4d // indirect
+	github.com/andybalholm/brotli v1.1.1 // indirect
 	github.com/benbjohnson/clock v1.3.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/census-instrumentation/opencensus-proto v0.4.1 // indirect
@@ -128,6 +129,7 @@ require (
 	github.com/go-openapi/analysis v0.23.0 // indirect
 	github.com/go-openapi/jsonpointer v0.21.0 // indirect
 	github.com/go-openapi/jsonreference v0.21.0 // indirect
+	github.com/go-resty/resty/v2 v2.15.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
@@ -152,11 +154,14 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
+	github.com/klauspost/cpuid/v2 v2.2.3 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
+	github.com/l0wl3vel/bunny-storage-go-sdk v0.0.11 // indirect
 	github.com/lib/pq v1.10.9 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-runewidth v0.0.9 // indirect
+	github.com/minio/sha256-simd v1.0.1 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -170,7 +175,6 @@ require (
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/prometheus/common v0.62.0 // indirect
 	github.com/prometheus/procfs v0.15.1 // indirect
-	github.com/redis/go-redis/v9 v9.7.3 // indirect
 	github.com/robfig/cron v1.0.0 // indirect
 	github.com/sagikazarmark/locafero v0.4.0 // indirect
 	github.com/sagikazarmark/slog-shim v0.1.0 // indirect
@@ -184,6 +188,7 @@ require (
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
+	github.com/valyala/fasthttp v1.57.0 // indirect
 	github.com/vbatts/tar-split v0.11.3 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/volcengine/volc-sdk-golang v1.0.23 // indirect
@@ -234,9 +239,9 @@ require (
 
 replace (
 	github.com/Azure/go-autorest => github.com/Azure/go-autorest v14.2.0+incompatible
+	github.com/distribution/distribution/v3 => github.com/nirvati/distribution/v3 v3.0.0-bunny.1
 	github.com/docker/distribution => github.com/distribution/distribution v2.8.3+incompatible
 	github.com/gocraft/work => github.com/goharbor/work v0.5.1-patch
 	github.com/goharbor/harbor => ../
 	github.com/gomodule/redigo => github.com/gomodule/redigo v1.9.2
-	github.com/distribution/distribution/v3 => github.com/nirvati/distribution/v3 v3.0.0-bunny.1
 )
