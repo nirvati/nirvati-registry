@@ -19,7 +19,7 @@ TIMESTAMP=$(shell date +"%Y%m%d")
 # docker parameters
 DOCKERCMD=$(shell which docker)
 DOCKERBUILD=$(DOCKERCMD) build --no-cache --network=$(DOCKERNETWORK)
-DOCKERBUILD_WITH_PULL_PARA=$(DOCKERBUILD) --pull=$(PULL_BASE_FROM_DOCKERHUB)
+DOCKERBUILD_WITH_PULL_PARA=$(DOCKERBUILD) --pull=false
 DOCKERRMIMAGE=$(DOCKERCMD) rmi
 DOCKERIMAGES=$(DOCKERCMD) images
 IMAGENAMESPACE=harbor.nirvati.org/registry
@@ -228,7 +228,7 @@ define _build_base
 		fi ;\
 		$(DOCKERBUILD) -f $(2)/Dockerfile.base -t $(BASEIMAGENAMESPACE)/harbor-$(1)-base:$(BASEIMAGETAG) --label base-build-date=$(TIMESTAMP) . ;\
 		if [ "$(PUSHBASEIMAGE)" = "true" ] ; then \
-			$(PUSHSCRIPTPATH)/$(PUSHSCRIPTNAME) $(BASEIMAGENAMESPACE)/harbor-$(1)-base:$(BASEIMAGETAG) $(REGISTRYUSER) $(REGISTRYPASSWORD) docker.io $(PULL_BASE_FROM_DOCKERHUB) || exit 1; \
+			$(PUSHSCRIPTPATH)/$(PUSHSCRIPTNAME) $(BASEIMAGENAMESPACE)/harbor-$(1)-base:$(BASEIMAGETAG) $(REGISTRYUSER) $(REGISTRYPASSWORD) $(REGISTRYSERVER) false || exit 1; \
 		fi ; \
 	fi
 endef
