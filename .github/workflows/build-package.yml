@@ -26,6 +26,11 @@ jobs:
           registry: harbor.nirvati.org
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+        with:
+          limit-access-to-actor: true
+          limit-access-to-users: AaronDewes
       - uses: jitterbit/get-changed-files@v1
         id: changed-files
         with:
