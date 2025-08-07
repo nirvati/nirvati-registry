@@ -26,11 +26,6 @@ jobs:
           registry: harbor.nirvati.org
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      - name: Ensure docker works in general
-        run: |
-          docker pull alpine:latest
-          docker tag alpine:latest harbor.nirvati.org/registry/alpine-test:latest
-          docker push harbor.nirvati.org/registry/alpine-test:latest
       - uses: jitterbit/get-changed-files@v1
         id: changed-files
         with:
