@@ -9,12 +9,11 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
             "allowedCommonJsDependencies": [
               "cron-validator",
-              "js-yaml",
-              "highcharts"
+              "js-yaml"
             ],
             "outputPath": "dist",
             "index": "src/index.html",
@@ -50,7 +49,6 @@
               "node_modules/prismjs/components/prism-yaml.min.js"
             ],
             "aot": false,
-            "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
             "sourceMap": true,
@@ -69,7 +67,6 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
               "buildOptimizer": true,
               "fileReplacements": [
                 {
