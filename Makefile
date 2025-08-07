@@ -95,8 +95,8 @@ BUILDBASETARGET=trivy-adapter core db jobservice nginx portal redis registry reg
 ifeq ($(BUILD_INSTALLER), true)
 	BUILDBASETARGET += prepare log
 endif
-IMAGENAMESPACE=registry
-BASEIMAGENAMESPACE=registry
+IMAGENAMESPACE=harbor.nirvati.org/registry
+BASEIMAGENAMESPACE=harbor.nirvati.org/registry
 # #input true/false only
 PULL_BASE_FROM_DOCKERHUB=false
 
