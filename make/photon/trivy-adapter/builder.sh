@@ -2,11 +2,6 @@
 
 set +e
 
-if [ -z $1 ]; then
-  error "Please set the 'version' variable"
-  exit 1
-fi
-
 VERSION="0.33.2"
 GOBUILDIMAGE="golang:1.24.6"
 
