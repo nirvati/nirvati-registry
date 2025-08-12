@@ -3,7 +3,7 @@
 set +e
 
 # TODO(Nirvati): Make this configurable/part of the CI config
-VERSION="bunny"
+VERSION="main"
 DISTRIBUTION_SRC="https://github.com/nirvati/distribution.git"
 GOBUILDIMAGE="golang:1.24.6"
 
